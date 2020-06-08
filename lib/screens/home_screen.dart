@@ -3,6 +3,7 @@ import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app_flutter/global/app_colors.dart';
+import 'package:travel_app_flutter/screens/detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -76,22 +77,22 @@ class HomeScreen extends StatelessWidget {
                     FlexibleTrackSize(1),
                   ],
                   children: <Widget>[
-                    getPlaceWidget('assets/5.svg').withGridPlacement(
+                    getPlaceWidget('assets/5.svg', context).withGridPlacement(
                       rowStart: 0,
                       columnStart: 0,
                       rowSpan: 2,
                     ),
-                    getPlaceWidget('assets/3.svg').withGridPlacement(
+                    getPlaceWidget('assets/3.svg', context).withGridPlacement(
                       rowStart: 2,
                       columnStart: 0,
                       rowSpan: 1,
                     ),
-                    getPlaceWidget('assets/2.svg').withGridPlacement(
+                    getPlaceWidget('assets/2.svg', context).withGridPlacement(
                       rowStart: 0,
                       columnStart: 1,
                       rowSpan: 1,
                     ),
-                    getPlaceWidget('assets/4.svg').withGridPlacement(
+                    getPlaceWidget('assets/4.svg', context).withGridPlacement(
                       rowStart: 1,
                       columnStart: 1,
                       rowSpan: 2,
@@ -106,9 +107,15 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget getPlaceWidget(imagePatch) {
+  Widget getPlaceWidget(imagePatch, context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(imagePatch),
+            ));
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
